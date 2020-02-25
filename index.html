@@ -4,70 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imagen con Vista 360</title>
-    <style>
-        body{
-            height: 100vh;
-            margin:0;
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-        }
-        input{
-            width: 768px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="border.css">
 </head>
 <body>
-    <input type="range" name="" min="1" max="39" step="1" value="1" id="slider">
-    <canvas id="canvas" width="768" height="512"></canvas>
+    <div class="box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <line class="top" x1="0" y1="0" x2="2880" y2="0"/>
+            <line class="bottom" x1="960" y1="540" x2="-1200" y2="540"/>
+            <line class="left" x1="0" y1="540" x2="0" y2="-1080"/>
+            <line class="right" x1="960" y1="0" x2="960" y2="1620"/>
+        </svg>
+        <canvas id="canvas" width="960" height="540" class="canvas"></canvas>
+        <input type="range" name="" min="1" max="39" step="1" value="1" id="slider">
+    </div>
 
-    <script>
-        //seleccionamos los elementos a usar
-        const slider = document.querySelector('#slider')
-        const canvas = document.querySelector('#canvas')
-        // agregamos el evento listener en input
-        slider.addEventListener('input', handleInputSlider)
-        const ctx = canvas.getContext('2d')
-        // creamos un arreglo donde se almacenaran las imagenes 
-        const images = [];
-        /**
-        * Cargamos las imagenes por medio del evento window load
-        * de esta forma las imagenes se cargan en background y la pagina
-        * terina de cargar antes.
-        **/
-        window.addEventListener('load', pageLoaded)
-         // Recorremos las 36 imagenes para mostrar en el image
-        function pageLoaded (){
-            for (let i = 1; i <= 39; i += 1 ){
-                const number = i.toString().padStart(2, '00')
-                const url = `./image/${number}.jpg`
-                const image = new Image()
-                image.src = url
-                image.addEventListener('load', () => {
-                    images[i] = image
-                    // si el indice es igual a 1 cargamos la image
-                    if (i === 1) {
-                        loadImage(i)
-                    }
-                })
-            }
-        }
-
-        function loadImage(index){
-            /** 
-            /* Recibe 5 parametros:
-            /* indice de la imagen, x, y, tamaños ancho y alto 
-            **/
-            ctx.drawImage(images[index], 0, 0, canvas.clientWidth, canvas.clientHeight)
-        }
-
-        // funcion para el input slider
-        function handleInputSlider(){
-            console.log(this.value)
-            loadImage(this.value)
-        }
-        
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

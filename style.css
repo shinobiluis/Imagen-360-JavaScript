@@ -1,0 +1,15 @@
+body{
+    height: 100vh;
+    margin:0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+input{
+    width: 80%;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+}
+
