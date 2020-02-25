@@ -1,5 +1,4 @@
 # Imagen 360 JavaScript 💪
-___
 
 Este código mustra el como crear una vista de 360 usando diferetes imagenes. 
 
